@@ -1,4 +1,4 @@
-"""Claude (Anthropic) for Liminal: an AI assistant plugin (liminal_lib.assistants, plugin API 2.0) that
+"""Claude (Anthropic) for Liminal: an AI assistant plugin (liminal_libs.assistants, plugin API 2.0) that
 evaluates standardized arguments through Anthropic's Messages API on your own API key, with the
 plans, models and prices written in, dated, and checked against Anthropic's pages.
 
@@ -26,7 +26,7 @@ of this plugin.
 """
 from __future__ import annotations
 
-from liminal_lib.assistants import AssistantPlugin, Caps, Model, Plan, Source
+from liminal_libs.assistants import AssistantPlugin, Caps, Model, Plan, Source
 
 from .assistant import API, API_VERSION, ClaudeAssistant
 

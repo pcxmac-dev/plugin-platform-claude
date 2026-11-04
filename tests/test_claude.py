@@ -10,12 +10,12 @@ from datetime import datetime, timezone
 
 import pytest
 
-from liminal_lib.assistants import Answer, Question, Usage, evaluate
-from liminal_lib.errors import NotEntitled, SourceError, Unauthorized
-from liminal_lib.ratelimit import fingerprint
+from liminal_libs.assistants import Answer, Question, Usage, evaluate
+from liminal_libs.errors import NotEntitled, SourceError, Unauthorized
+from liminal_libs.ratelimit import fingerprint
 
-import platform_plugin_claude as claude
-from platform_plugin_claude import ASSISTANT, MODELS, PLANS, SOURCES, ClaudePlugin
+import plugin_platform_claude as claude
+from plugin_platform_claude import ASSISTANT, MODELS, PLANS, SOURCES, ClaudePlugin
 
 from conftest import FakeResponse, FakeSession
 
@@ -49,11 +49,11 @@ def test_it_loads_as_an_assistant_plugin(installed):
     assert list(found) == ["claude"] and isinstance(found["claude"], ClaudePlugin)
     p = found["claude"]
     assert p.KIND == "assistant" and p.SYSTEM == "platform" and p.api == "2.0" and p.vendor == "Anthropic"
-    assert p.origin == "package: platform_plugin_claude"
+    assert p.origin == "package: plugin_platform_claude"
     assert [k.name for k in p.keys] == ["CLAUDE_API_KEY", "CLAUDE_ACCOUNT"] and p.keys[0].aliases == ("ANTHROPIC_API_KEY",)
     assert p.plan_vars == ("CLAUDE_PLAN", "CLAUDE_MODEL", "CLAUDE_REQUESTS_PER_DAY", "CLAUDE_TOKENS_PER_DAY")
     assert p.options == ("CLAUDE_MAX_OUTPUT_TOKENS", "CLAUDE_EFFORT") and p.has_scan and p.has_settings
-    from liminal_lib.sources import registry
+    from liminal_libs.sources import registry
 
     assert registry.errors() == []
     assert set(registry.variables()) >= {"CLAUDE_API_KEY", "ANTHROPIC_API_KEY", "CLAUDE_ACCOUNT", "CLAUDE_PLAN", "CLAUDE_EFFORT"}
@@ -161,7 +161,7 @@ def test_connect_reads_the_tier_from_the_headers_and_checks_the_models(installed
     assert scanned.plan == {"CLAUDE_PLAN": "start"} and scanned.limits["perMinute"] == 4000
     assert session.calls[0][:2] == ("GET", "https://api.anthropic.com/v1/models") and session.calls[0][4]["x-api-key"] == KEY
     assert session.calls[1][3]["max_tokens"] == 16 and session.calls[1][3]["system"] == "Reply with the single word OK."
-    from liminal_lib.config import with_detected
+    from liminal_libs.config import with_detected
 
     assert with_detected(settings, scanned.plan).plugin("claude").plan == "evaluation"  # your own choice wins
     applied = with_detected(settings_for(CLAUDE_API_KEY=KEY), scanned.plan)  # no choice: the tier found applies

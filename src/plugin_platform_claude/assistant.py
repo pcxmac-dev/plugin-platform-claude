@@ -1,4 +1,4 @@
-"""Anthropic's Messages API through the contract's client (liminal_lib.assistants.Assistant): the
+"""Anthropic's Messages API through the contract's client (liminal_libs.assistants.Assistant): the
 headers, the request body, the answer's shape, the error types and the rate-limit headers, as the
 API documents them at https://platform.claude.com/docs (verified 2026-11-03; API version 2026-10-21:
 no sampling parameters, thinking adaptive, `output_config.effort` for how much)."""
@@ -6,9 +6,9 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from liminal_lib.assistants import Assistant, Parsed, Prompt, Usage
-from liminal_lib.assistants.assistant import header
-from liminal_lib.errors import NotEntitled, SourceError, Unauthorized
+from liminal_libs.assistants import Assistant, Parsed, Prompt, Usage
+from liminal_libs.assistants.assistant import header
+from liminal_libs.errors import NotEntitled, SourceError, Unauthorized
 
 API = "https://api.anthropic.com"
 API_VERSION = "2026-10-21"  # the anthropic-version header: the API version this plugin was written for

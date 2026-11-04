@@ -7,8 +7,8 @@ import os
 
 import pytest
 
-from liminal_lib.assistants.verify import check_sources
-from platform_plugin_claude import ASSISTANT
+from liminal_libs.assistants.verify import check_sources
+from plugin_platform_claude import ASSISTANT
 
 pytestmark = pytest.mark.skipif(not os.environ.get("LIMINAL_VENDOR_PAGES"),
                                 reason="LIMINAL_VENDOR_PAGES=1 reads the vendor's pages (the weekly CI run)")

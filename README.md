@@ -1,7 +1,7 @@
-# platform-plugin-claude
+# plugin-platform-claude
 
-Claude for [Liminal](https://github.com/pcxmac-dev/liminal-app): an AI assistant plugin (plugin API
-2.0, `liminal_lib.assistants`) that evaluates standardized arguments (a question over headlines, an
+Claude for [Liminal](https://github.com/pcxmac-dev/liminal-charts): an AI assistant plugin (plugin API
+2.0, `liminal_libs.assistants`) that evaluates standardized arguments (a question over headlines, an
 assessment, a report; a judge over earlier answers) through Anthropic's Messages API on your own
 API key, with Anthropic's plans, models and prices written in.
 
@@ -28,10 +28,10 @@ Nothing is sent from an offline copy of the app (`LIMINAL_OFFLINE`).
 Into the app's environment, from the app's folder:
 
 ```powershell
-.venv\Scripts\python.exe -m pip install "platform-plugin-claude @ git+https://github.com/pcxmac-dev/platform-plugin-claude@release/0.2.0"
+.venv\Scripts\python.exe -m pip install "plugin-platform-claude @ git+https://github.com/pcxmac-dev/plugin-platform-claude@release/0.2.0"
 ```
 
-or with the app's plugins (`pip install -e ".[plugins]"` in liminal-app). The app loads it on its next
+or with the app's plugins (`pip install -e ".[plugins]"` in liminal-charts). The app loads it on its next
 start. Save the key with the app's `tools/set-key.ps1` or on the Plugins view (it is read from your
 user environment variables only, never written to a file).
 

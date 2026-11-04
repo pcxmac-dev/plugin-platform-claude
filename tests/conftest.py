@@ -12,7 +12,7 @@ import pytest
 def no_saved_keys(monkeypatch, tmp_path):
     """Tests never read the user's saved keys (their user environment variables), never load the
     workspace's plugin directory, and count on scratch ledgers."""
-    from liminal_lib import config, layout
+    from liminal_libs import config, layout
 
     monkeypatch.setattr(config, "saved_user_keys", lambda: {})
     monkeypatch.setattr(layout, "plugins_dir", lambda: None)
@@ -49,10 +49,10 @@ class FakeSession:
 @pytest.fixture
 def installed(monkeypatch):
     """The plugin loaded as an installed package's entry point, as the app loads it."""
-    from liminal_lib.sources import registry
+    from liminal_libs.sources import registry
 
     def install(*plugins):
-        eps = [SimpleNamespace(name=p.name, value=f"platform_plugin_{p.name}", load=(lambda p=p: p)) for p in plugins]
+        eps = [SimpleNamespace(name=p.name, value=f"plugin_platform_{p.name}", load=(lambda p=p: p)) for p in plugins]
         monkeypatch.setattr(registry, "_entry_points", lambda: eps)
         registry.reload()
         return registry.assistants()
@@ -63,7 +63,7 @@ def installed(monkeypatch):
 
 @pytest.fixture
 def settings_for(tmp_path):
-    from liminal_lib.config import load_settings
+    from liminal_libs.config import load_settings
 
     def make(**env):
         return load_settings(env={"LIMINAL_DB": str(tmp_path / "m.db"), **env}, env_file=None)

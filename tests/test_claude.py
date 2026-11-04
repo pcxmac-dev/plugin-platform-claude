@@ -107,9 +107,9 @@ def test_the_free_plan_sends_nothing_and_says_why(installed, settings_for):
     settings = settings_for(CLAUDE_API_KEY=KEY)
     p = settings.plugin("claude")
     assert p.plan == "free" and ASSISTANT.keys_set(settings) and not ASSISTANT.served(settings)
-    assert ASSISTANT.free_note(settings).startswith("the No API plan plan has no API access: a Claude.ai subscription")
+    assert ASSISTANT.free_note(settings).startswith("the Free plan has no API access: a Claude.ai subscription")
     session = FakeSession()
-    with pytest.raises(NotEntitled, match="No API plan plan has no API access"):
+    with pytest.raises(NotEntitled, match="Free plan has no API access"):
         evaluate(Question("x"), settings, assistant="claude", session=session)
     assert session.calls == []
     with pytest.raises(Unauthorized, match="no key"):

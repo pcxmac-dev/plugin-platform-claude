@@ -38,7 +38,7 @@ VERIFIED = "2026-11-03"  # the day the tables below were checked against SOURCES
 # cap and, per model class, requests and input and output tokens a minute. The figures here are the
 # 5.5 models' (Haiku, Sonnet, Opus 5.5 share them; Fable 5.x has a quarter of the tokens).
 PLANS = (
-    Plan("free", "No API plan", api_access=False, price="a Claude.ai subscription, or nothing",
+    Plan("free", "Free", api_access=False, price="a Claude.ai subscription, or nothing",
          note="a Claude.ai subscription (Free, Pro, Max) is not an API key: the API needs a Console organization "
               "(platform.claude.com) with credits bought; a new organization starts in the Evaluation tier"),
     Plan("evaluation", "Evaluation tier", price="credits bought; a new organization",

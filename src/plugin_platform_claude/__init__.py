@@ -84,6 +84,7 @@ class ClaudePlugin(AssistantPlugin):
     """Claude: the plugin (see the module's docstring)."""
 
     name = "claude"
+    ICON = "claude"  # Claude's spark (liminal-libs 1.33.0's icons.js)
     title = "Claude"
     about = "Anthropic's Claude through the Messages API: evaluations of standardized arguments on your key"
     vendor = "Anthropic"

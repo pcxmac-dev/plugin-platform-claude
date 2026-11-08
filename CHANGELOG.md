@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (2026-11-08)
+
+Its icon is Claude's spark, drawn in the library's line (liminal-libs 1.33.0's `claude`; the user: "for the AI icons, lets use the respective mascot/icon from the business, logo, etc.."). Needs liminal-libs>=1.33.0.
+
 ## 0.2.0 (2026-11-03)
 
 Renamed `plugin-platform-claude` (the package `plugin_platform_claude`; it was `platform-plugin-claude`) on 2026-11-03: the naming by system (plugins are `plugin-<app>-<name>`), on liminal-libs 1.4.0 (`liminal_libs`, the library renamed with it).

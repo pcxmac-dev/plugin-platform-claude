@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "plugin-platform-claude"
-version = "0.2.1"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
+version = "0.3.0"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
 description = "Claude for Liminal: Anthropic's models through the Messages API, evaluating standardized arguments on your own API key, with the plans and prices written in."
 readme = "README.md"
 requires-python = ">=3.10"
-# the library it plugs into (the AI assistant kind: liminal_libs.assistants, plugin API 2.0)
-dependencies = ["liminal-libs>=1.33.0"]
+# the library it plugs into (the AI assistant kind: liminal_libs.assistants, plugin API 2.2)
+dependencies = ["liminal-libs>=1.49.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

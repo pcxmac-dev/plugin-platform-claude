@@ -1,10 +1,11 @@
-"""Claude (Anthropic) for Liminal: an AI assistant plugin (liminal_libs.assistants, plugin API 2.0) that
+"""Claude (Anthropic) for Liminal: an AI assistant plugin (liminal_libs.assistants, plugin API 2.2) that
 evaluates standardized arguments through Anthropic's Messages API on your own API key, with the
 plans, models and prices written in, dated, and checked against Anthropic's pages.
 
 A Liminal plugin released on its own, registered under the entry point group `liminal.providers` as
 `claude` (the registry's name too): the plugin `ClaudePlugin` (ASSISTANT below), its
-assistant `ClaudeAssistant` (assistant.py). It relies on plugin API 2.0 and nothing of the apps.
+assistant `ClaudeAssistant` (assistant.py), what it attaches to its card (apis.py: the Claude API's parts,
+its pages, limits and prices). It relies on plugin API 2.2 and nothing of the apps.
 
 What the user sets (the Plugins view's Setup, or the app's key script): `CLAUDE_API_KEY` (read as
 `ANTHROPIC_API_KEY` too), `CLAUDE_ACCOUNT` (the email or account name the key belongs to: shown with
@@ -28,9 +29,11 @@ from __future__ import annotations
 
 from liminal_libs.assistants import AssistantPlugin, Caps, Model, Plan, Source
 
+from .apis import APIS
 from .assistant import API, API_VERSION, ClaudeAssistant
 
-__all__ = ["ASSISTANT", "ClaudePlugin", "ClaudeAssistant", "PLANS", "MODELS", "SOURCES", "VERIFIED", "API", "API_VERSION"]
+__all__ = ["ASSISTANT", "ClaudePlugin", "ClaudeAssistant", "PLANS", "MODELS", "SOURCES", "VERIFIED", "API", "API_VERSION",
+           "APIS"]
 
 VERIFIED = "2026-11-03"  # the day the tables below were checked against SOURCES
 
@@ -90,7 +93,8 @@ class ClaudePlugin(AssistantPlugin):
     vendor = "Anthropic"
     signup = "https://platform.claude.com/"
     order = 500
-    api = "2.0"
+    api = "2.2"  # 2.2: what it attaches to (apis)
+    apis = APIS  # the Claude API: its parts, pages, limits and prices (apis.py)
     assistant = ClaudeAssistant
     plans = PLANS
     models = MODELS

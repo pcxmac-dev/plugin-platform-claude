@@ -48,7 +48,7 @@ def test_it_loads_as_an_assistant_plugin(installed):
     found = installed(ASSISTANT)
     assert list(found) == ["claude"] and isinstance(found["claude"], ClaudePlugin)
     p = found["claude"]
-    assert p.KIND == "assistant" and p.SYSTEM == "platform" and p.api == "2.0" and p.vendor == "Anthropic"
+    assert p.KIND == "assistant" and p.SYSTEM == "platform" and p.api == "2.2" and p.vendor == "Anthropic"
     assert p.origin == "package: plugin_platform_claude"
     assert [k.name for k in p.keys] == ["CLAUDE_API_KEY", "CLAUDE_ACCOUNT"] and p.keys[0].aliases == ("ANTHROPIC_API_KEY",)
     assert p.plan_vars == ("CLAUDE_PLAN", "CLAUDE_MODEL", "CLAUDE_REQUESTS_PER_DAY", "CLAUDE_TOKENS_PER_DAY")

@@ -1,7 +1,7 @@
 # plugin-platform-claude
 
 Claude for [Liminal](https://github.com/pcxmac-dev/liminal-charts): an AI assistant plugin (plugin API
-2.0, `liminal_libs.assistants`) that evaluates standardized arguments (a question over headlines, an
+2.2, `liminal_libs.assistants`) that evaluates standardized arguments (a question over headlines, an
 assessment, a report; a judge over earlier answers) through Anthropic's Messages API on your own
 API key, with Anthropic's plans, models and prices written in.
 
@@ -22,6 +22,20 @@ API key, with Anthropic's plans, models and prices written in.
   is a new release of this plugin.
 
 Nothing is sent from an offline copy of the app (`LIMINAL_OFFLINE`).
+
+## Its API
+
+The [Claude API](https://platform.claude.com/docs/en/api/overview) at `https://api.anthropic.com`, API version
+2026-10-21: [`POST /v1/messages`](https://platform.claude.com/docs/en/api/messages/create) for every evaluation and
+Connect's probe, [`GET /v1/models`](https://platform.claude.com/docs/en/api/models/list) for Connect's models list, with
+the key in `x-api-key` (made on the Console's [API keys](https://platform.claude.com/settings/keys) page). Its limits
+are the [usage tiers'](https://platform.claude.com/docs/en/api/rate-limits) requests and tokens a minute and monthly
+spend caps; its prices are per token ([pricing](https://platform.claude.com/docs/en/about-claude/pricing)); its status
+is at [status.claude.com](https://status.claude.com/).
+
+`ClaudePlugin.apis` (`apis.py`, plugin API 2.2) says this on the plugin's page, with every other part of the API's
+reference (token counting, batches, files, skills, Managed Agents, the Admin and Compliance APIs ...) and its notable
+calls, as read on 2026-11-11.
 
 ## Install
 

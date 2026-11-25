@@ -142,7 +142,9 @@ def test_the_apis_errors_are_mapped_and_the_final_ones_not_tried_again(installed
     assert kind is NotEntitled
     over = error(529, "overloaded_error", "Overloaded")
     kind, msg, n = run(over, over, over, over, over)
-    assert kind is SourceError and n == 5  # tried again as a 5xx, then given up
+    # sent once: liminal-libs 1.80.0 never sends a POST again on a 5xx (a gateway's 502 or 504 may come after the
+    # vendor ran it, and billed it); until then it was tried five times
+    assert kind is SourceError and n == 1
 
 
 def test_connect_reads_the_tier_from_the_headers_and_checks_the_models(installed, settings_for):
